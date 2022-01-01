@@ -14,5 +14,6 @@
         <TextBox HorizontalAlignment="Left" VerticalAlignment="Center" Height="50" Width="100" 
                   Margin="5"/>
         <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="115,45,0,0" VerticalAlignment="Top"/>
+        <Canvas/>
     </Grid>
 </Window>
