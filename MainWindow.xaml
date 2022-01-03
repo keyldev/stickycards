@@ -16,6 +16,7 @@
         <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="115,45,0,0" VerticalAlignment="Top"/>
         <Canvas>
             <Button Content="Button" Canvas.Left="648" Canvas.Top="102"/>
+            <Label Content="Label" Canvas.Left="227" Canvas.Top="127"/>
         </Canvas>
     </Grid>
 </Window>
