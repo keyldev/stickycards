@@ -17,6 +17,7 @@
         <Canvas>
             <Button Content="Button" Canvas.Left="648" Canvas.Top="102"/>
             <Label Content="Label" Canvas.Left="227" Canvas.Top="127"/>
+            <Label Content="Label" Canvas.Left="270" Canvas.Top="127"/>
         </Canvas>
     </Grid>
 </Window>
