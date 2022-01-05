@@ -18,6 +18,7 @@
             <Button Content="Button" Canvas.Left="648" Canvas.Top="102"/>
             <Label Content="Label" Canvas.Left="227" Canvas.Top="127"/>
             <Label Content="Label" Canvas.Left="270" Canvas.Top="127"/>
+            <Image Height="100" Canvas.Left="632" Canvas.Top="242" Width="100"/>
         </Canvas>
     </Grid>
 </Window>
