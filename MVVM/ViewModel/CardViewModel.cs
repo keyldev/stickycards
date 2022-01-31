@@ -114,7 +114,7 @@ namespace helloworld.MVVM.ViewModel
 
                 MyControlItems.Add(new Image()
                 {
-                    Source = new BitmapImage(new Uri(@"C:\Users\vasya\Pictures\beauti_gif.gif")),
+                    Source = new BitmapImage(new Uri(pathToImage)),
                 });
             });
             // жирность
