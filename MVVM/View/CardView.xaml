@@ -1,15 +1,12 @@
-﻿<Window x:Class="helloworld.MainWindow"
+﻿<Window x:Class="helloworld.MVVM.View.CardView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModel="clr-namespace:helloworld.MVVM.ViewModel"
-        xmlns:local="clr-namespace:helloworld"
-        mc:Ignorable="d" WindowStyle="None" ResizeMode="NoResize" MouseLeftButtonDown="Window_MouseLeftButtonDown"
-        Title="Notes" Height="450" Width="315"  Background="#FF1F1F1F">
-    <Window.DataContext>
-        <viewModel:MainWindowViewModel/>
-    </Window.DataContext>
+        xmlns:local="clr-namespace:helloworld.MVVM.View"
+        mc:Ignorable="d" WindowStyle="None" ResizeMode="CanResizeWithGrip"
+        Title="Notes" Height="290" Width="350" Background="Transparent" AllowsTransparency="True">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -22,14 +19,14 @@
         </Style>
         <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
         <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
-        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FF464646"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#7F656565"/>
         <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
-        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#99464646"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FF636363"/>
         <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
         <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
         <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
         <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
-        <Style x:Key="AddCardButtonStyle" TargetType="{x:Type Button}">
+        <Style x:Key="CloseCardButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -77,14 +74,14 @@
         </Style>
         <SolidColorBrush x:Key="Button.Static.Background1" Color="#FFDDDDDD"/>
         <SolidColorBrush x:Key="Button.Static.Border1" Color="#FF707070"/>
-        <SolidColorBrush x:Key="Button.MouseOver.Background1" Color="#FF585858"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background1" Color="#B2585858"/>
         <SolidColorBrush x:Key="Button.MouseOver.Border1" Color="#FF3C7FB1"/>
-        <SolidColorBrush x:Key="Button.Pressed.Background1" Color="#994E4E4E"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background1" Color="#FF424242"/>
         <SolidColorBrush x:Key="Button.Pressed.Border1" Color="#FF2C628B"/>
         <SolidColorBrush x:Key="Button.Disabled.Background1" Color="#FFF4F4F4"/>
         <SolidColorBrush x:Key="Button.Disabled.Border1" Color="#FFADB2B5"/>
         <SolidColorBrush x:Key="Button.Disabled.Foreground1" Color="#FF838383"/>
-        <Style x:Key="CloseAppButtonStyle" TargetType="{x:Type Button}">
+        <Style x:Key="ControlButtonsStyle" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual1}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background1}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border1}"/>
@@ -122,24 +119,76 @@
             </Setter>
         </Style>
     </Window.Resources>
+    <Window.DataContext>
+        <viewModel:CardViewModel/>
+    </Window.DataContext>
     <Grid>
-        <Border VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="25" Background="#FF4A4A4A">
+        <Grid Margin="0,5,0,0" Background="#FF333333">
+            <Grid Margin="0,10,0,50">
+                <ScrollViewer VerticalScrollBarVisibility="Hidden" >
+                    <ItemsControl ItemsSource="{Binding MyControlItems}">
+                    </ItemsControl>
+                </ScrollViewer>
+                
+            </Grid>
+            <Grid VerticalAlignment="Bottom" Height="50">
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{DynamicResource ControlButtonsStyle}" x:Name="AddTextBoxButton" Command="{Binding AddTextBoxCommand}" HorizontalAlignment="Left" VerticalAlignment="Center" Height="30" Width="30" Margin="5"
+                        BorderThickness="0" Background="Transparent" Content="T" FontSize="20" FontWeight="Bold"
+                        Foreground="Gray">
+                        <Button.ToolTip>
+                            <ToolTip Background="#FF444444">
+                                <TextBlock Text="Добавить текстовое поле" Foreground="#FFB9B9B9"/>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                    <Button Command="{Binding SetItalicText}" HorizontalAlignment="Left" VerticalAlignment="Center" Height="30" Width="30" Margin="5,0,0,0"
+                        BorderThickness="0" Background="Transparent" Content="I" FontSize="20" FontWeight="Bold"
+                        Foreground="Gray" FontStyle="Italic" Style="{DynamicResource ControlButtonsStyle}">
+                        <Button.ToolTip>
+                            <ToolTip Background="#FF444444">
+                                <TextBlock Text="Форматирование: курсив" Foreground="#FFB9B9B9"/>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                    <Button Command="{Binding SetUnderlineText}" HorizontalAlignment="Left" VerticalAlignment="Center" Height="30" Width="30" Margin="5"
+                        BorderThickness="0" Background="Transparent" Content="U" FontSize="20" FontWeight="Bold"
+                        Foreground="Gray" Style="{DynamicResource ControlButtonsStyle}">
+                        <Button.ToolTip>
+                            <ToolTip Background="#FF444444">
+                                <TextBlock Text="Форматирование: подчеркивание" Foreground="#FFB9B9B9"/>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                    <Button Command="{Binding SetFontWeight}" HorizontalAlignment="Left" VerticalAlignment="Center" Height="30" Width="30" Margin="5"
+                        BorderThickness="0" Background="Transparent" Content="B" FontSize="20" FontWeight="Bold"
+                        Foreground="Gray" Style="{DynamicResource ControlButtonsStyle}">
+                        <Button.ToolTip>
+                            <ToolTip Background="#FF444444">
+                                <TextBlock Text="Форматирование: жирность" Foreground="#FFB9B9B9"/>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                    <Button Command="{Binding AddImage}" HorizontalAlignment="Left" VerticalAlignment="Center" Height="30" Width="30" Margin="5,0,0,0"
+                        BorderThickness="0" Background="Transparent" Content="Img" FontSize="20" FontWeight="Bold"
+                        Foreground="Gray" Style="{DynamicResource ControlButtonsStyle}">
+                        <Button.ToolTip>
+                            <ToolTip Background="#FF444444">
+                                <TextBlock Text="Добавить изображение из файла" Foreground="#FFB9B9B9"/>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                </StackPanel>
+            </Grid>
+            <Separator VerticalAlignment="Bottom" Margin="0,0,0,50"/>
+        </Grid>
+        <Border x:Name="bCardHeader" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="5" Background="{Binding BackgroundColor}"
+                MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
             <Grid>
-                <Button Style="{DynamicResource CloseAppButtonStyle}" x:Name="bClickApp" HorizontalAlignment="Right" VerticalAlignment="Stretch" Height="25" Width="25"
-                        BorderThickness="0" Background="{x:Null}" Content="x" VerticalContentAlignment="Center" Foreground="#FF8E8E8E"
-                        Click="bClickApp_Click"/>
-                <Button Style="{DynamicResource CloseAppButtonStyle}" x:Name="bHideApp" HorizontalAlignment="Right" VerticalAlignment="Stretch" Height="25" Width="25"
-                        BorderThickness="0" Background="{x:Null}" Content="-" VerticalContentAlignment="Center" Foreground="#FF8E8E8E" Margin="0,0,25,0"
-                        Click="bHideApp_Click"/>
-                <Button Style="{DynamicResource AddCardButtonStyle}" x:Name="AddCardButton" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="30"
-                        Content="+" FontSize="16" Background="Transparent" Foreground="Gray" FontWeight="Bold"
-                        BorderThickness="0" Command="{Binding AddNoteCommand}"/>
+                <Button Style="{DynamicResource CloseCardButtonStyle}" x:Name="CloseCardButton" HorizontalAlignment="Right" VerticalAlignment="Stretch" Height="Auto" Width="20"
+                        BorderThickness="0" Background="Transparent" Content="x" Foreground="White" FontSize="14"
+                        Click="CloseCardButton_Click"/>
             </Grid>
         </Border>
-        <Grid Margin="0,25,0,0">
-            <ItemsControl ItemsSource="{Binding NotesList}">
-                
-            </ItemsControl>
-        </Grid>
     </Grid>
 </Window>
