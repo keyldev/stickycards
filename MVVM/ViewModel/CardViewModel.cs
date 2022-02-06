@@ -56,15 +56,6 @@ namespace helloworld.MVVM.ViewModel
                 {
                     CardView card = new CardView();
                     card.Show();
-                    // переделать (решить проблему)
-                    try
-                    {
-                        //NotesList.Add(CardViewModel.self);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.ToString());
-                    }
                 });
                 MyControlItems = new ObservableCollection<object>(); // коллекция объектов типа object (если кто увидит - пипяу)
 
