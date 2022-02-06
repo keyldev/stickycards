@@ -40,8 +40,18 @@ namespace helloworld.MVVM.ViewModel
         public ObservableCollection<object> ColorsList
         {
             get { return _colorsList; }
-            set { _colorsList = value;NotifyPropertyChanged(); }
+            set { _colorsList = value; NotifyPropertyChanged(); }
         }
+        private bool _isTopmost;
+
+        public bool isTopmost
+        {
+            get { return _isTopmost; }
+            set { _isTopmost = value; NotifyPropertyChanged(); }
+        }
+        public RelayCommand PinCard { get; set; }
+
+
         #region CMDS
         public RelayCommand AddTextBoxCommand { get; set; }
         public RelayCommand SetItalicText { get; set; }
@@ -58,6 +68,15 @@ namespace helloworld.MVVM.ViewModel
         {
             try
             {
+                isTopmost = false;
+                PinCard = new RelayCommand((o) =>
+                {
+                    if (isTopmost)
+                    {
+                        isTopmost = false;
+                    }
+                    else isTopmost = true;
+                });
                 AddNoteCommand = new RelayCommand(o =>
                 {
                     CardView card = new CardView();
@@ -65,7 +84,7 @@ namespace helloworld.MVVM.ViewModel
                 });
                 MyControlItems = new ObservableCollection<object>(); // коллекция объектов типа object (если кто увидит - пипяу) #change
                 BackgroundColor = "#ffc2c1"; //#fixed
-                                                 // Добавить текстовое поле
+                                             // Добавить текстовое поле
                 AddTextBoxCommand = new RelayCommand(o =>
                 {
                     MyControlItems.Add(new RichTextBox()
@@ -114,7 +133,6 @@ namespace helloworld.MVVM.ViewModel
                     {
                         text.ApplyPropertyValue(Inline.TextDecorationsProperty, TextDecorations.Underline);
                     }
-
                 });
                 // картинка
                 AddImage = new RelayCommand((o) =>
@@ -153,7 +171,7 @@ namespace helloworld.MVVM.ViewModel
                 });
 
                 ColorsList = new ObservableCollection<object>();
-                for(int i = 0; i < colors.Length; i++)
+                for (int i = 0; i < colors.Length; i++)
                 {
                     ColorsList.Add(new Button()
                     {
