@@ -34,8 +34,14 @@ namespace helloworld.MVVM.ViewModel
             "#ffc2c1",
             "#22ccaa"
         };
-        Random randomColor;
 
+        private ObservableCollection<object> _colorsList;
+
+        public ObservableCollection<object> ColorsList
+        {
+            get { return _colorsList; }
+            set { _colorsList = value;NotifyPropertyChanged(); }
+        }
         #region CMDS
         public RelayCommand AddTextBoxCommand { get; set; }
         public RelayCommand SetItalicText { get; set; }
@@ -50,7 +56,6 @@ namespace helloworld.MVVM.ViewModel
         // добавить методы инициализации команд и т.п.
         public CardViewModel()
         {
-            randomColor = new Random();
             try
             {
                 AddNoteCommand = new RelayCommand(o =>
@@ -59,7 +64,7 @@ namespace helloworld.MVVM.ViewModel
                     card.Show();
                 });
                 MyControlItems = new ObservableCollection<object>(); // коллекция объектов типа object (если кто увидит - пипяу) #change
-                BackgroundColor = getBorderColor(); //#fixed
+                BackgroundColor = "#ffc2c1"; //#fixed
                                                  // Добавить текстовое поле
                 AddTextBoxCommand = new RelayCommand(o =>
                 {
@@ -146,15 +151,27 @@ namespace helloworld.MVVM.ViewModel
                         }
                     }
                 });
+
+                ColorsList = new ObservableCollection<object>();
+                for(int i = 0; i < colors.Length; i++)
+                {
+                    ColorsList.Add(new Button()
+                    {
+                        Width = 30,
+                        Height = 30,
+                        Background = (SolidColorBrush)(new BrushConverter().ConvertFrom(colors[i]))
+                    });
+                    foreach (Button item in ColorsList)
+                        item.Click += (o, e) =>
+                        {
+                            BackgroundColor = item.Background.ToString();
+                        };
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-        private string getBorderColor()
-        {
-            return colors[randomColor.Next(0, colors.Length)];
         }
     }
 }
