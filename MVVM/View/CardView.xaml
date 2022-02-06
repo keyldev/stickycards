@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModel="clr-namespace:helloworld.MVVM.ViewModel"
         xmlns:local="clr-namespace:helloworld.MVVM.View"
-        mc:Ignorable="d" WindowStyle="None" ResizeMode="CanResizeWithGrip"
+        mc:Ignorable="d" WindowStyle="None" ResizeMode="CanResizeWithGrip" 
         Title="Notes" Height="290" Width="350" Background="Transparent" AllowsTransparency="True"
-        Topmost="{Binding isTopmost}">
+        Topmost="{Binding isTopmost}" Icon="/Assets/icon.ico">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -199,9 +199,9 @@
                 <Popup IsOpen="{Binding ElementName=colorsExpander, Path=IsExpanded, Mode=TwoWay}" 
                PlacementTarget="{Binding ElementName=colorsExpander}" StaysOpen="False"
                Placement="Bottom" AllowsTransparency="True">
-                    <Border CornerRadius="5" Background="DarkGray">
-                        <StackPanel >
-                            <TextBlock Text="Choose color:"/>
+                    <Border CornerRadius="3" Background="#FF636363">
+                        <StackPanel>
+                            <TextBlock Text="Choose color:" Foreground="White"/>
                             <ItemsControl ItemsSource="{Binding ColorsList}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>

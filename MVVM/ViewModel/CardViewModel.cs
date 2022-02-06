@@ -32,6 +32,7 @@ namespace helloworld.MVVM.ViewModel
             "#cc00ff",
             "#ff2b2b",
             "#ffc2c1",
+
             "#22ccaa"
         };
 
