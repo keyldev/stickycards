@@ -28,22 +28,21 @@ namespace helloworld.MVVM.ViewModel
         string[] colors = {
             "#ff25cc",
             "#2211AA",
-            "#000000",
+            "#3eb489",
             "#cc00ff",
-            "#ff0000",
+            "#ff2b2b",
             "#ffc2c1",
             "#22ccaa"
         };
         Random rnd;
-
-        public RelayCommand AddNoteCommand { get; set; }
-
         #region CMDS
         public RelayCommand AddTextBoxCommand { get; set; }
         public RelayCommand SetItalicText { get; set; }
         public RelayCommand SetUnderlineText { get; set; }
         public RelayCommand AddImage { get; set; }
         public RelayCommand SetFontWeight { get; set; }
+
+        public RelayCommand AddNoteCommand { get; set; }
         #endregion
 
         // вынести функционал из конструктора
