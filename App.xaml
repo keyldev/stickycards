@@ -4,7 +4,7 @@
              xmlns:views="clr-namespace:helloworld.MVVM.View"
              xmlns:viewModels="clr-namespace:helloworld.MVVM.ViewModel"
              xmlns:local="clr-namespace:helloworld"
-             StartupUri="MainWindow.xaml">
+             StartupUri="/MVVM/View/CardView.xaml">
     <Application.Resources>
         
     </Application.Resources>

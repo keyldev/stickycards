@@ -1,4 +1,5 @@
 ﻿using helloworld.Core;
+using helloworld.MVVM.View;
 using Microsoft.Win32;
 using System;
 using System.Collections.ObjectModel;
@@ -35,6 +36,8 @@ namespace helloworld.MVVM.ViewModel
         };
         Random rnd;
 
+        public RelayCommand AddNoteCommand { get; set; }
+
         #region CMDS
         public RelayCommand AddTextBoxCommand { get; set; }
         public RelayCommand SetItalicText { get; set; }
@@ -47,98 +50,118 @@ namespace helloworld.MVVM.ViewModel
         // добавить методы инициализации команд и т.п.
         public CardViewModel()
         {
-            MyControlItems = new ObservableCollection<object>(); // коллекция объектов типа object (если кто увидит - пипяу)
-
-            rnd = new Random(); 
-            int value = rnd.Next(0, 6);
-            BackgroundColor = colors[value]; // колхозный рандом цветов из стрингового массива (#change)
-            // Добавить текстовое поле
-            AddTextBoxCommand = new RelayCommand(o => 
+            try
             {
-                MyControlItems.Add(new RichTextBox()
+                AddNoteCommand = new RelayCommand(o =>
                 {
-                    BorderThickness = new Thickness(0),
-                    Background = null,
-                    Foreground = Brushes.White,
-                    ToolTip = "Введите текст",
-                    CaretBrush = Brushes.White,
-                    FontSize = 14,
-                });
-            });
-            // курсив
-            SetItalicText = new RelayCommand((o) =>
-            {
-                RichTextBox textSelection = null;
-                foreach (var item in MyControlItems)
-                {
-                    if (item is RichTextBox)
-                        textSelection = (RichTextBox)item;
-                }
-                TextSelection text = textSelection.Selection;
-                if (!text.IsEmpty)
-                {
+                    CardView card = new CardView();
+                    card.Show();
+                    // переделать (решить проблему)
                     try
                     {
-                        text.ApplyPropertyValue(TextElement.FontStyleProperty, FontStyles.Italic);
+                        //NotesList.Add(CardViewModel.self);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        MessageBox.Show(ex.ToString());
                     }
-                }
-            });
-            // подчеркнутый текст
-            SetUnderlineText = new RelayCommand((o) =>
-            {
-                RichTextBox textSelection = null;
-                foreach (var item in MyControlItems)
-                {
-                    if (item is RichTextBox)
-                        textSelection = (RichTextBox)item;
-                }
-                TextSelection text = (TextSelection)textSelection.Selection;
-                if (!text.IsEmpty)
-                {
-                    text.ApplyPropertyValue(Inline.TextDecorationsProperty, TextDecorations.Underline);
-
-                }
-
-            });
-            // картинка
-            AddImage = new RelayCommand((o) =>
-            {
-                string pathToImage = null;
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.ShowDialog();
-                pathToImage = openFileDialog.FileName;
-
-                MyControlItems.Add(new Image()
-                {
-                    Source = new BitmapImage(new Uri(pathToImage)),
                 });
-            });
-            // жирность
-            SetFontWeight = new RelayCommand(o =>
+                MyControlItems = new ObservableCollection<object>(); // коллекция объектов типа object (если кто увидит - пипяу)
+
+                rnd = new Random();
+                int value = rnd.Next(0, 6);
+                BackgroundColor = colors[value]; // колхозный рандом цветов из стрингового массива (#change)
+                                                 // Добавить текстовое поле
+                AddTextBoxCommand = new RelayCommand(o =>
+                {
+                    MyControlItems.Add(new RichTextBox()
+                    {
+                        BorderThickness = new Thickness(0),
+                        Background = null,
+                        Foreground = Brushes.White,
+                        ToolTip = "Введите текст",
+                        CaretBrush = Brushes.White,
+                        FontSize = 14,
+                    });
+                });
+                // курсив
+                SetItalicText = new RelayCommand((o) =>
+                {
+                    RichTextBox textSelection = null;
+                    foreach (var item in MyControlItems)
+                    {
+                        if (item is RichTextBox)
+                            textSelection = (RichTextBox)item;
+                    }
+                    TextSelection text = textSelection.Selection;
+                    if (!text.IsEmpty)
+                    {
+                        try
+                        {
+                            text.ApplyPropertyValue(TextElement.FontStyleProperty, FontStyles.Italic);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }
+                });
+                // подчеркнутый текст
+                SetUnderlineText = new RelayCommand((o) =>
+                {
+                    RichTextBox textSelection = null;
+                    foreach (var item in MyControlItems)
+                    {
+                        if (item is RichTextBox)
+                            textSelection = (RichTextBox)item;
+                    }
+                    TextSelection text = (TextSelection)textSelection.Selection;
+                    if (!text.IsEmpty)
+                    {
+                        text.ApplyPropertyValue(Inline.TextDecorationsProperty, TextDecorations.Underline);
+                    }
+
+                });
+                // картинка
+                AddImage = new RelayCommand((o) =>
+                {
+                    string pathToImage = null;
+                    OpenFileDialog openFileDialog = new OpenFileDialog();
+                    openFileDialog.ShowDialog();
+                    pathToImage = openFileDialog.FileName;
+
+                    MyControlItems.Add(new Image()
+                    {
+                        Source = new BitmapImage(new Uri(pathToImage)),
+                    });
+                });
+                // жирность
+                SetFontWeight = new RelayCommand(o =>
+                {
+                    RichTextBox textSelection = null;
+                    foreach (var item in MyControlItems)
+                    {
+                        if (item is RichTextBox)
+                            textSelection = (RichTextBox)item;
+                    }
+                    TextSelection text = textSelection.Selection;
+                    if (!text.IsEmpty)
+                    {
+                        try
+                        {
+                            text.ApplyPropertyValue(TextElement.FontWeightProperty, FontWeights.Bold);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }
+                });
+            }
+            catch (Exception ex)
             {
-                RichTextBox textSelection = null;
-                foreach (var item in MyControlItems)
-                {
-                    if (item is RichTextBox)
-                        textSelection = (RichTextBox)item;
-                }
-                TextSelection text = textSelection.Selection;
-                if (!text.IsEmpty)
-                {
-                    try
-                    {
-                        text.ApplyPropertyValue(TextElement.FontWeightProperty, FontWeights.Bold);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
-            });
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

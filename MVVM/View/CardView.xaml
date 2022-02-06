@@ -188,6 +188,9 @@
                 <Button Style="{DynamicResource CloseCardButtonStyle}" x:Name="CloseCardButton" HorizontalAlignment="Right" VerticalAlignment="Stretch" Height="Auto" Width="20"
                         BorderThickness="0" Background="Transparent" Content="x" Foreground="White" FontSize="14"
                         Click="CloseCardButton_Click"/>
+                <Button Style="{DynamicResource CloseCardButtonStyle}" x:Name="AddCardButton" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="20"
+                        Content="+" FontSize="14" Background="Transparent" Foreground="Gray" FontWeight="Bold"
+                        BorderThickness="0" Command="{Binding AddNoteCommand}"/>
             </Grid>
         </Border>
     </Grid>
