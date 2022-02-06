@@ -61,11 +61,11 @@
     </Compile>
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\RelayCommand.cs" />
-    <Page Include="MVVM\View\CardView.xaml">
+    <Page Include="Assets\Icons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MVVM\View\ListCardView.xaml">
+    <Page Include="MVVM\View\CardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -74,9 +74,6 @@
     <Compile Include="MVVM\ViewModel\CardViewModel.cs" />
     <Compile Include="MVVM\View\CardView.xaml.cs">
       <DependentUpon>CardView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MVVM\View\ListCardView.xaml.cs">
-      <DependentUpon>ListCardView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
