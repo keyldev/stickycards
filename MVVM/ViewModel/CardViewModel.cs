@@ -34,7 +34,8 @@ namespace helloworld.MVVM.ViewModel
             "#ffc2c1",
             "#22ccaa"
         };
-        Random rnd;
+        Random randomColor;
+
         #region CMDS
         public RelayCommand AddTextBoxCommand { get; set; }
         public RelayCommand SetItalicText { get; set; }
@@ -49,6 +50,7 @@ namespace helloworld.MVVM.ViewModel
         // добавить методы инициализации команд и т.п.
         public CardViewModel()
         {
+            randomColor = new Random();
             try
             {
                 AddNoteCommand = new RelayCommand(o =>
@@ -56,11 +58,8 @@ namespace helloworld.MVVM.ViewModel
                     CardView card = new CardView();
                     card.Show();
                 });
-                MyControlItems = new ObservableCollection<object>(); // коллекция объектов типа object (если кто увидит - пипяу)
-
-                rnd = new Random();
-                int value = rnd.Next(0, 6);
-                BackgroundColor = colors[value]; // колхозный рандом цветов из стрингового массива (#change)
+                MyControlItems = new ObservableCollection<object>(); // коллекция объектов типа object (если кто увидит - пипяу) #change
+                BackgroundColor = getBorderColor(); //#fixed
                                                  // Добавить текстовое поле
                 AddTextBoxCommand = new RelayCommand(o =>
                 {
@@ -152,6 +151,10 @@ namespace helloworld.MVVM.ViewModel
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+        private string getBorderColor()
+        {
+            return colors[randomColor.Next(0, colors.Length)];
         }
     }
 }
