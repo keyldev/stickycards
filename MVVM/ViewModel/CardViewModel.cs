@@ -30,7 +30,7 @@ namespace helloworld.MVVM.ViewModel
             get { return _isTopmost; }
             set { _isTopmost = value; NotifyPropertyChanged(); }
         }
-        
+
         // popup status (open/not open)
         private bool _isOptionOpen = false;
         public bool IsOptionOpen
@@ -94,6 +94,12 @@ namespace helloworld.MVVM.ViewModel
         {
             try
             {
+                initializeColors();
+                ColorsList = new ObservableCollection<object>();
+                MyControlItems = new ObservableCollection<object>(); // коллекция объектов типа object (если кто увидит - пипяу) #change
+                ShowOptionsDialog = new RelayCommand(o => IsOptionOpen = (IsOptionOpen) ? false : true); 
+
+
                 PinCard = new RelayCommand((o) =>
                 {
                     if (isTopmost)
@@ -111,9 +117,7 @@ namespace helloworld.MVVM.ViewModel
                 {
                     CardView card = new CardView();
                     card.Show();
-                });
-                MyControlItems = new ObservableCollection<object>(); // коллекция объектов типа object (если кто увидит - пипяу) #change
-                                             // Добавить текстовое поле
+                });                                               // Добавить текстовое поле
                 AddTextBoxCommand = new RelayCommand(o =>
                 {
                     MyControlItems.Add(new RichTextBox()
@@ -199,25 +203,6 @@ namespace helloworld.MVVM.ViewModel
                     }
                 });
 
-                ColorsList = new ObservableCollection<object>();
-                for (int i = 0; i < colors.Length; i++)
-                {
-                    ColorsList.Add(new Button()
-                    {
-                        Width = 30,
-                        Height = 30,
-                        Background = (SolidColorBrush)(new BrushConverter().ConvertFrom(colors[i]))
-                    });
-                    foreach (Button item in ColorsList)
-                        item.Click += (o, e) =>
-                        {
-                            BackgroundColor = item.Background.ToString();
-                        };
-                }
-
-                
-                ShowOptionsDialog = new RelayCommand(o => IsOptionOpen = (IsOptionOpen) ? false : true);
-
                 AboutAuthor = new RelayCommand((o) =>
                 {
                     MessageBox.Show("Автор: keyldev;\nGit:keyldev;\nGood luck!",
@@ -225,13 +210,31 @@ namespace helloworld.MVVM.ViewModel
                         MessageBoxButton.OK,
                         MessageBoxImage.Information); // #fix
                 });
-                CheckAppUpdates = new RelayCommand((o) => {
+                CheckAppUpdates = new RelayCommand((o) =>
+                {
                     //WebClient web = new WebClient(); // #create app update
                 });
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+        private void initializeColors()
+        {
+            for (int i = 0; i < colors.Length; i++)
+            {
+                ColorsList.Add(new Button()
+                {
+                    Width = 30,
+                    Height = 30,
+                    Background = (SolidColorBrush)(new BrushConverter().ConvertFrom(colors[i]))
+                });
+                foreach (Button item in ColorsList)
+                    item.Click += (o, e) =>
+                    {
+                        BackgroundColor = item.Background.ToString();
+                    };
             }
         }
     }
