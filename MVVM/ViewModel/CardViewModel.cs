@@ -63,7 +63,8 @@ namespace helloworld.MVVM.ViewModel
             "#cc00ff",
             "#ff2b2b",
             "#ffc2c1",
-
+            "#66A3A3",
+            "#00bfff",
             "#22ccaa"
         };
         private ObservableCollection<object> _colorsList;
@@ -97,7 +98,6 @@ namespace helloworld.MVVM.ViewModel
                 MyControlItems = new ObservableCollection<object>(); // коллекция объектов типа object (если кто увидит - пипяу) #change
                 ShowOptionsDialog = new RelayCommand(o => IsOptionOpen = (IsOptionOpen) ? false : true);
                 initializeColors();
-
 
                 PinCard = new RelayCommand((o) =>
                 {
