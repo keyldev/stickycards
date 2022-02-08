@@ -32,7 +32,7 @@ namespace helloworld.MVVM.ViewModel
         }
         
         // popup status (open/not open)
-        private bool _isOptionOpen;
+        private bool _isOptionOpen = false;
         public bool IsOptionOpen
         {
             get { return _isOptionOpen; }
@@ -215,7 +215,7 @@ namespace helloworld.MVVM.ViewModel
                         };
                 }
 
-                IsOptionOpen = false;
+                
                 ShowOptionsDialog = new RelayCommand(o => IsOptionOpen = (IsOptionOpen) ? false : true);
 
                 AboutAuthor = new RelayCommand((o) =>
