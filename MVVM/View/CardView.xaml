@@ -211,7 +211,8 @@
                             <Button Command="{Binding AboutAuthor}" Content="About author" Style="{DynamicResource CloseCardButtonStyle}"
                                     BorderThickness="0" Background="#FFE2DEDE" Foreground="#FF4E4E4E" Margin="1"/>
                             <Button Content="Check updates" Style="{DynamicResource CloseCardButtonStyle}"
-                                    BorderThickness="0" Background="#FFE2DEDE" Foreground="#FF4E4E4E" Margin="1"/>
+                                    BorderThickness="0" Background="#FFE2DEDE" Foreground="#FF4E4E4E" Margin="1"
+                                    Command="{Binding CheckAppUpdates}"/>
                         </StackPanel>
                     </Grid>
                 </Popup>

@@ -3,6 +3,7 @@ using helloworld.MVVM.View;
 using Microsoft.Win32;
 using System;
 using System.Collections.ObjectModel;
+using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -13,18 +14,48 @@ namespace helloworld.MVVM.ViewModel
 {
     internal class CardViewModel : ObservableObject
     {
-        private string _backgroundColor;
-        public string BackgroundColor
-        {
-            get { return _backgroundColor; }
-            set { _backgroundColor = value; NotifyPropertyChanged(); }
-        }
+        // Controls collection (TextBoxes, Images etc)
         private ObservableCollection<object> _myControlItems;
         public ObservableCollection<object> MyControlItems
         {
             get { return _myControlItems; }
             set { _myControlItems = value; NotifyPropertyChanged(); }
         }
+
+        #region TECHPROPS
+        // card status (over all windows)
+        private bool _isTopmost;
+        public bool isTopmost
+        {
+            get { return _isTopmost; }
+            set { _isTopmost = value; NotifyPropertyChanged(); }
+        }
+        
+        // popup status (open/not open)
+        private bool _isOptionOpen;
+        public bool IsOptionOpen
+        {
+            get { return _isOptionOpen; }
+            set { _isOptionOpen = value; NotifyPropertyChanged(); }
+        }
+
+        // header status (pinned/unpinned)
+        private string _noteHeader;
+        public string NoteHeader
+        {
+            get { return _noteHeader; }
+            set { _noteHeader = value; NotifyPropertyChanged(); }
+        }
+        //header color
+        private string _backgroundColor;
+        public string BackgroundColor
+        {
+            get { return _backgroundColor; }
+            set { _backgroundColor = value; NotifyPropertyChanged(); }
+        }
+        #endregion  
+
+        #region COLORS
         string[] colors = {
             "#ff25cc",
             "#2211AA",
@@ -35,46 +66,27 @@ namespace helloworld.MVVM.ViewModel
 
             "#22ccaa"
         };
-
         private ObservableCollection<object> _colorsList;
         public ObservableCollection<object> ColorsList
         {
             get { return _colorsList; }
             set { _colorsList = value; NotifyPropertyChanged(); }
         }
-        private bool _isTopmost;
-        public bool isTopmost
-        {
-            get { return _isTopmost; }
-            set { _isTopmost = value; NotifyPropertyChanged(); }
-        }
-        public RelayCommand PinCard { get; set; }
-        public RelayCommand AboutAuthor { get; set; } // #fix
-        public RelayCommand ShowOptionsDialog { get; set; }
-        private bool _isOptionOpen;
-        public bool IsOptionOpen
-        {
-            get { return _isOptionOpen; }
-            set { _isOptionOpen = value; NotifyPropertyChanged(); }
-        }
-        #region CMDS
+        #endregion
+
+        #region ButtonCMDS
         public RelayCommand AddTextBoxCommand { get; set; }
         public RelayCommand SetItalicText { get; set; }
         public RelayCommand SetUnderlineText { get; set; }
         public RelayCommand AddImage { get; set; }
         public RelayCommand SetFontWeight { get; set; }
-
         public RelayCommand AddNoteCommand { get; set; }
+        public RelayCommand PinCard { get; set; }
+        public RelayCommand AboutAuthor { get; set; } // #to fix
+        public RelayCommand ShowOptionsDialog { get; set; }
+        public RelayCommand CheckAppUpdates { get; set; }
+
         #endregion
-
-        private string _noteHeader;
-
-        public string NoteHeader
-        {
-            get { return _noteHeader; }
-            set { _noteHeader = value; NotifyPropertyChanged(); }
-        }
-
 
         // вынести функционал из конструктора
         // добавить методы инициализации команд и т.п.
@@ -82,19 +94,19 @@ namespace helloworld.MVVM.ViewModel
         {
             try
             {
-                NoteHeader = "Notes (unpinned)"; // #fix
+                NoteHeader = "Notes (unpinned)"; // #to fix
                 isTopmost = false;
                 PinCard = new RelayCommand((o) =>
                 {
                     if (isTopmost)
                     {
                         isTopmost = false;
-                        NoteHeader = "Note(unpinned)"; // #fix
+                        NoteHeader = "Note(unpinned)"; // #to fix
                     }
                     else
                     {
                         isTopmost = true;
-                        NoteHeader = "Note(pinned)";// #fix
+                        NoteHeader = "Note(pinned)";// #to fix
                     }
                 });
                 AddNoteCommand = new RelayCommand(o =>
@@ -215,6 +227,9 @@ namespace helloworld.MVVM.ViewModel
                         "About",
                         MessageBoxButton.OK,
                         MessageBoxImage.Information); // #fix
+                });
+                CheckAppUpdates = new RelayCommand((o) => {
+                    //WebClient web = new WebClient(); // #create app update
                 });
             }
             catch (Exception ex)
