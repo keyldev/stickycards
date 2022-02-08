@@ -185,7 +185,41 @@
                                   Data="M3.5,17.06a.76.76,0,0,1-.58-.27.75.75,0,0,1,.1-1l4.7-3.9a3.75,3.75,0,0,1,5.27.48l1.12,1.34a2.25,2.25,0,0,0,3.21.25L20,11.56a.75.75,0,0,1,1,1.13L18.31,15A3.74,3.74,0,0,1,13,14.62l-1.12-1.34A2.25,2.25,0,0,0,8.68,13L4,16.89A.72.72,0,0,1,3.5,17.06Z" Fill="Gray"/>
                         </Grid>
                     </Button>
-
+                    <Popup IsOpen="{Binding OpenTimerSettings}"
+                           StaysOpen="False" Placement="Bottom" PlacementTarget="{Binding ElementName=SetTimer}"
+                           AllowsTransparency="true">
+                        <StackPanel Orientation="Horizontal" Background="DarkGray">
+                            <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding TimerMinutes}" 
+                 VerticalAlignment="Top" Width="30" Height="20"
+                 BorderThickness="0,0,0,1" Foreground="Gray"/>
+                            <Button Command="{Binding StartTimer}" HorizontalAlignment="Left" VerticalAlignment="Top"
+                        BorderThickness="0" Height="20" Background="Transparent" >
+                                <Grid>
+                                    <Path  
+                            Data="M208.511,102.62c-6.6-6.623-16.58-8.608-25.222-5.022c-8.674,3.589-14.303,12.03-14.303,21.398v251.797
+		c0,9.368,5.629,17.809,14.303,21.397c2.853,1.187,5.864,1.762,8.849,1.762c6.025,0,11.958-2.353,16.373-6.784l125.906-125.9
+		c9.041-9.04,9.041-23.708,0-32.748L208.511,102.62z" Fill="#FF22A798" Width="30" Height="10" Stretch="Uniform"/>
+                                    <Path  
+                            Data="M244.895,0C109.644,0,0,109.645,0,244.894c0,135.251,109.644,244.895,244.895,244.895
+		s244.894-109.644,244.894-244.895C489.788,109.645,380.146,0,244.895,0z M244.895,440.81c-108.034,0-195.915-87.89-195.915-195.916
+		S136.861,48.979,244.895,48.979S440.81,136.868,440.81,244.894S352.929,440.81,244.895,440.81z" Fill="#FF22A798" Width="15" Height="20" Stretch="Uniform"/>
+                                </Grid>
+                            </Button>
+                        </StackPanel>
+                    </Popup>
+                    <Button x:Name="SetTimer" Command="{Binding ShowTimerSettings}" HorizontalAlignment="Left" 
+                            VerticalAlignment="Center" Height="30" Width="30" Margin="5,0,0,0"
+                        BorderThickness="0" Background="Transparent" FontSize="20" FontWeight="Bold"
+                        Foreground="Gray" Style="{DynamicResource ControlButtonsStyle}" >
+                        <Grid>
+                            <Path Data="M233.004,0C104.224,0,0,104.212,0,233.004c0,128.781,104.212,233.004,233.004,233.004    c128.782,0,233.004-104.212,233.004-233.004C466.008,104.222,361.796,0,233.004,0z M244.484,242.659l-63.512,75.511    c-5.333,6.34-14.797,7.156-21.135,1.824c-6.34-5.333-7.157-14.795-1.824-21.135l59.991-71.325V58.028c0-8.284,6.716-15,15-15    s15,6.716,15,15v174.976h0C248.004,236.536,246.757,239.956,244.484,242.659z" Fill="Gray" Height="18" Width="20" Stretch="Uniform"/>
+                        </Grid>
+                        <Button.ToolTip>
+                            <ToolTip Background="#FF444444">
+                                <TextBlock Text="Задать время уведомления (таймер) мин." Foreground="#FFB9B9B9"/>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
                 </StackPanel>
             </Grid>
             <Separator VerticalAlignment="Bottom" Margin="0,0,0,50"/>

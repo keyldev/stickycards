@@ -9,11 +9,13 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace helloworld.MVVM.ViewModel
 {
     internal class CardViewModel : ObservableObject
     {
+        DispatcherTimer timer;
         // Controls collection (TextBoxes, Images etc)
         private ObservableCollection<object> _myControlItems;
         public ObservableCollection<object> MyControlItems
@@ -53,7 +55,23 @@ namespace helloworld.MVVM.ViewModel
             get { return _backgroundColor; }
             set { _backgroundColor = value; NotifyPropertyChanged(); }
         }
-        #endregion  
+        private bool _openTimerSettings = false;
+
+        public bool OpenTimerSettings
+        {
+            get { return _openTimerSettings; }
+            set { _openTimerSettings = value; NotifyPropertyChanged(); }
+        }
+
+        private string _timerMinutes = "5";
+
+        public string TimerMinutes
+        {
+            get { return _timerMinutes; }
+            set { _timerMinutes = value; NotifyPropertyChanged(); }
+        }
+
+        #endregion
 
         #region COLORS
         string[] colors = {
@@ -86,6 +104,8 @@ namespace helloworld.MVVM.ViewModel
         public RelayCommand AboutAuthor { get; set; } // #to fix
         public RelayCommand ShowOptionsDialog { get; set; }
         public RelayCommand CheckAppUpdates { get; set; }
+        public RelayCommand ShowTimerSettings { get; private set; }
+        public RelayCommand StartTimer { get; set; }
 
         #endregion
 
@@ -213,12 +233,30 @@ namespace helloworld.MVVM.ViewModel
                 {
                     //WebClient web = new WebClient(); // #create app update
                 });
+                ShowTimerSettings = new RelayCommand(o =>
+                {
+                    OpenTimerSettings = OpenTimerSettings ? false : true;
+                });
+                StartTimer = new RelayCommand((o) =>
+                {
+                    timer = new DispatcherTimer();
+                    timer.Interval = new TimeSpan(0, int.Parse(TimerMinutes), 0);
+                    timer.Tick += Timer_Tick;
+                    timer.Start();
+                });
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+        //#update
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            MessageBox.Show("Время таймера закончилось.","",MessageBoxButton.OK, MessageBoxImage.Information);
+            timer.Stop();
+        }
+
         private void initializeColors()
         {
             ColorsList = new ObservableCollection<object>();
