@@ -123,7 +123,6 @@
             </Setter>
         </Style>
     </Window.Resources>
-    
     <Grid>
         <Grid Margin="0,5,0,0" Background="#FF333333">
             <Grid Margin="0,10,0,50">
@@ -207,10 +206,12 @@
                 </Button>
                 <Popup x:Name="AdditionalOptions" IsOpen="{Binding IsOptionOpen}" PlacementTarget="{Binding ElementName=bOptions}"
                       StaysOpen="False" Placement="Top" >
-                    <Grid Background="Gray" Width="auto" Height="auto">
+                    <Grid Background="Gray" Width="100" Height="100">
                         <StackPanel>
-                            <Button Command="{Binding AboutAuthor}" Content="About author"/>
-                            <Button Content="Check updates"/>
+                            <Button Command="{Binding AboutAuthor}" Content="About author" Style="{DynamicResource CloseCardButtonStyle}"
+                                    BorderThickness="0" Background="#FFE2DEDE" Foreground="#FF4E4E4E" Margin="1"/>
+                            <Button Content="Check updates" Style="{DynamicResource CloseCardButtonStyle}"
+                                    BorderThickness="0" Background="#FFE2DEDE" Foreground="#FF4E4E4E" Margin="1"/>
                         </StackPanel>
                     </Grid>
                 </Popup>
