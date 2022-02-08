@@ -24,7 +24,7 @@ namespace helloworld.MVVM.ViewModel
 
         #region TECHPROPS
         // card status (over all windows)
-        private bool _isTopmost;
+        private bool _isTopmost = false;
         public bool isTopmost
         {
             get { return _isTopmost; }
@@ -40,14 +40,14 @@ namespace helloworld.MVVM.ViewModel
         }
 
         // header status (pinned/unpinned)
-        private string _noteHeader;
+        private string _noteHeader = "Notes(unpinned)";
         public string NoteHeader
         {
             get { return _noteHeader; }
             set { _noteHeader = value; NotifyPropertyChanged(); }
         }
         //header color
-        private string _backgroundColor;
+        private string _backgroundColor = "#ffc2c1";
         public string BackgroundColor
         {
             get { return _backgroundColor; }
@@ -94,8 +94,6 @@ namespace helloworld.MVVM.ViewModel
         {
             try
             {
-                NoteHeader = "Notes (unpinned)"; // #to fix
-                isTopmost = false;
                 PinCard = new RelayCommand((o) =>
                 {
                     if (isTopmost)
@@ -115,7 +113,6 @@ namespace helloworld.MVVM.ViewModel
                     card.Show();
                 });
                 MyControlItems = new ObservableCollection<object>(); // коллекция объектов типа object (если кто увидит - пипяу) #change
-                BackgroundColor = "#ffc2c1"; //#fixed
                                              // Добавить текстовое поле
                 AddTextBoxCommand = new RelayCommand(o =>
                 {
@@ -223,7 +220,7 @@ namespace helloworld.MVVM.ViewModel
 
                 AboutAuthor = new RelayCommand((o) =>
                 {
-                    MessageBox.Show("Автор: keyldev;\nGit:keyldev;\nRights reserved",
+                    MessageBox.Show("Автор: keyldev;\nGit:keyldev;\nGood luck!",
                         "About",
                         MessageBoxButton.OK,
                         MessageBoxImage.Information); // #fix
