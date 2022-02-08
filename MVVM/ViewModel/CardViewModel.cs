@@ -94,10 +94,9 @@ namespace helloworld.MVVM.ViewModel
         {
             try
             {
-                initializeColors();
-                ColorsList = new ObservableCollection<object>();
                 MyControlItems = new ObservableCollection<object>(); // коллекция объектов типа object (если кто увидит - пипяу) #change
-                ShowOptionsDialog = new RelayCommand(o => IsOptionOpen = (IsOptionOpen) ? false : true); 
+                ShowOptionsDialog = new RelayCommand(o => IsOptionOpen = (IsOptionOpen) ? false : true);
+                initializeColors();
 
 
                 PinCard = new RelayCommand((o) =>
@@ -222,6 +221,7 @@ namespace helloworld.MVVM.ViewModel
         }
         private void initializeColors()
         {
+            ColorsList = new ObservableCollection<object>();
             for (int i = 0; i < colors.Length; i++)
             {
                 ColorsList.Add(new Button()
