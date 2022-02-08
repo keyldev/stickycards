@@ -37,22 +37,26 @@ namespace helloworld.MVVM.ViewModel
         };
 
         private ObservableCollection<object> _colorsList;
-
         public ObservableCollection<object> ColorsList
         {
             get { return _colorsList; }
             set { _colorsList = value; NotifyPropertyChanged(); }
         }
         private bool _isTopmost;
-
         public bool isTopmost
         {
             get { return _isTopmost; }
             set { _isTopmost = value; NotifyPropertyChanged(); }
         }
         public RelayCommand PinCard { get; set; }
-
-
+        public RelayCommand AboutAuthor { get; set; } // #fix
+        public RelayCommand ShowOptionsDialog { get; set; }
+        private bool _isOptionOpen;
+        public bool IsOptionOpen
+        {
+            get { return _isOptionOpen; }
+            set { _isOptionOpen = value; NotifyPropertyChanged(); }
+        }
         #region CMDS
         public RelayCommand AddTextBoxCommand { get; set; }
         public RelayCommand SetItalicText { get; set; }
@@ -63,20 +67,35 @@ namespace helloworld.MVVM.ViewModel
         public RelayCommand AddNoteCommand { get; set; }
         #endregion
 
+        private string _noteHeader;
+
+        public string NoteHeader
+        {
+            get { return _noteHeader; }
+            set { _noteHeader = value; NotifyPropertyChanged(); }
+        }
+
+
         // вынести функционал из конструктора
         // добавить методы инициализации команд и т.п.
         public CardViewModel()
         {
             try
             {
+                NoteHeader = "Notes (unpinned)"; // #fix
                 isTopmost = false;
                 PinCard = new RelayCommand((o) =>
                 {
                     if (isTopmost)
                     {
                         isTopmost = false;
+                        NoteHeader = "Note(unpinned)"; // #fix
                     }
-                    else isTopmost = true;
+                    else
+                    {
+                        isTopmost = true;
+                        NoteHeader = "Note(pinned)";// #fix
+                    }
                 });
                 AddNoteCommand = new RelayCommand(o =>
                 {
@@ -186,6 +205,17 @@ namespace helloworld.MVVM.ViewModel
                             BackgroundColor = item.Background.ToString();
                         };
                 }
+
+                IsOptionOpen = false;
+                ShowOptionsDialog = new RelayCommand(o => IsOptionOpen = (IsOptionOpen) ? false : true);
+
+                AboutAuthor = new RelayCommand((o) =>
+                {
+                    MessageBox.Show("Автор: keyldev;\nGit:keyldev;\nRights reserved",
+                        "About",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information); // #fix
+                });
             }
             catch (Exception ex)
             {

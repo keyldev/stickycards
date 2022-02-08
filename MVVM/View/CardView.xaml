@@ -6,8 +6,11 @@
         xmlns:viewModel="clr-namespace:helloworld.MVVM.ViewModel"
         xmlns:local="clr-namespace:helloworld.MVVM.View"
         mc:Ignorable="d" WindowStyle="None" ResizeMode="CanResizeWithGrip" 
-        Title="Notes" Height="290" Width="350" Background="Transparent" AllowsTransparency="True"
+        Title="{Binding NoteHeader}" MinHeight="290" MinWidth="350" Height="290" Width="350" Background="Transparent" AllowsTransparency="True"
         Topmost="{Binding isTopmost}" Icon="/Assets/icon.ico">
+    <Window.DataContext>
+        <viewModel:CardViewModel/>
+    </Window.DataContext>
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -120,9 +123,7 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Window.DataContext>
-        <viewModel:CardViewModel/>
-    </Window.DataContext>
+    
     <Grid>
         <Grid Margin="0,5,0,0" Background="#FF333333">
             <Grid Margin="0,10,0,50">
@@ -185,6 +186,7 @@
                                   Data="M3.5,17.06a.76.76,0,0,1-.58-.27.75.75,0,0,1,.1-1l4.7-3.9a3.75,3.75,0,0,1,5.27.48l1.12,1.34a2.25,2.25,0,0,0,3.21.25L20,11.56a.75.75,0,0,1,1,1.13L18.31,15A3.74,3.74,0,0,1,13,14.62l-1.12-1.34A2.25,2.25,0,0,0,8.68,13L4,16.89A.72.72,0,0,1,3.5,17.06Z" Fill="Gray"/>
                         </Grid>
                     </Button>
+
                 </StackPanel>
             </Grid>
             <Separator VerticalAlignment="Bottom" Margin="0,0,0,50"/>
@@ -193,8 +195,25 @@
                 MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
             <Grid>
                 <Button Style="{DynamicResource CloseCardButtonStyle}" x:Name="CloseCardButton" HorizontalAlignment="Right" VerticalAlignment="Stretch" Height="Auto" Width="20"
-                        BorderThickness="0" Background="Transparent" Content="x" Foreground="White" FontSize="14"
+                        BorderThickness="0" Background="Transparent" Content="x" Foreground="Gray" FontSize="14"
                         Click="CloseCardButton_Click"/>
+                <Button x:Name="bOptions" Style="{DynamicResource CloseCardButtonStyle}" HorizontalAlignment="Right" Margin="0,0,50,0" VerticalAlignment="Top"
+                BorderThickness="0" Height="20" Width="26" VerticalContentAlignment="Center" Padding="0,0,0,0" Background="{x:Null}"
+                        Command="{Binding ShowOptionsDialog}">
+                    <Grid Height="15" Width="25"> <!--Menu button: some options-->
+                        <Path Data="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" Fill="#FF484848"
+                 HorizontalAlignment="Center" VerticalAlignment="Center" Height="3" Stretch="Fill" Width="13"/>
+                    </Grid>
+                </Button>
+                <Popup x:Name="AdditionalOptions" IsOpen="{Binding IsOptionOpen}" PlacementTarget="{Binding ElementName=bOptions}"
+                      StaysOpen="False" Placement="Top" >
+                    <Grid Background="Gray" Width="auto" Height="auto">
+                        <StackPanel>
+                            <Button Command="{Binding AboutAuthor}" Content="About author"/>
+                            <Button Content="Check updates"/>
+                        </StackPanel>
+                    </Grid>
+                </Popup>
                 <Expander x:Name="colorsExpander" ExpandDirection="Down" HorizontalAlignment="Right" Margin="0,0,20,0"/>
                 <Popup IsOpen="{Binding ElementName=colorsExpander, Path=IsExpanded, Mode=TwoWay}" 
                PlacementTarget="{Binding ElementName=colorsExpander}" StaysOpen="False"
