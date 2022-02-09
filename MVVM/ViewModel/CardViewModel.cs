@@ -232,6 +232,7 @@ namespace helloworld.MVVM.ViewModel
                 CheckAppUpdates = new RelayCommand((o) =>
                 {
                     //WebClient web = new WebClient(); // #create app update
+                    
                 });
                 ShowTimerSettings = new RelayCommand(o =>
                 {
@@ -253,7 +254,7 @@ namespace helloworld.MVVM.ViewModel
         //#update
         private void Timer_Tick(object sender, EventArgs e)
         {
-            MessageBox.Show("Время таймера закончилось.","",MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Время таймера закончилось.","Внимание!",MessageBoxButton.OK, MessageBoxImage.Information);
             timer.Stop();
         }
 
