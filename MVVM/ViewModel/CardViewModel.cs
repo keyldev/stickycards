@@ -147,12 +147,15 @@ namespace helloworld.MVVM.ViewModel
                         ToolTip = "Введите текст",
                         CaretBrush = Brushes.White,
                         FontSize = 14,
+                        Document = new FlowDocument(new Paragraph(new Run("Давным-давно.."))),
                     });
+
                 });
                 // курсив
                 SetItalicText = new RelayCommand((o) =>
                 {
                     RichTextBox textSelection = null;
+
                     foreach (var item in MyControlItems)
                     {
                         if (item is RichTextBox)
@@ -232,7 +235,7 @@ namespace helloworld.MVVM.ViewModel
                 CheckAppUpdates = new RelayCommand((o) =>
                 {
                     //WebClient web = new WebClient(); // #create app update
-                    
+
                 });
                 ShowTimerSettings = new RelayCommand(o =>
                 {
@@ -254,7 +257,7 @@ namespace helloworld.MVVM.ViewModel
         //#update
         private void Timer_Tick(object sender, EventArgs e)
         {
-            MessageBox.Show("Время таймера закончилось.","Внимание!",MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Время таймера закончилось.", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Information);
             timer.Stop();
         }
 

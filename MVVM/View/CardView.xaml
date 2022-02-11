@@ -245,7 +245,7 @@
                                     BorderThickness="0" Background="#FFE2DEDE" Foreground="#FF4E4E4E" Margin="1"/>
                             <Button Content="Check updates" Style="{DynamicResource CloseCardButtonStyle}"
                                     BorderThickness="0" Background="#FFE2DEDE" Foreground="#FF4E4E4E" Margin="1"
-                                    Command="{Binding CheckAppUpdates}"/>
+                                    Command="{Binding CheckAppUpdates}" IsEnabled="false"/>
                         </StackPanel>
                     </Grid>
                 </Popup>
@@ -271,7 +271,7 @@
                         BorderThickness="0" Command="{Binding AddNoteCommand}"/>
                 <Button Style="{DynamicResource CloseCardButtonStyle}" x:Name="PinCardButton" HorizontalAlignment="Left" VerticalAlignment="Stretch" 
                         Width="25" FontSize="14" Background="Transparent" Foreground="Gray" FontWeight="Bold" Margin="21,0,0,0"
-                        BorderThickness="0" Command="{Binding PinCard}">
+                        BorderThickness="0" Command="{Binding PinCard}" >
                     <Button.ToolTip>
                         <ToolTip Background="#FF444444">
                             <TextBlock Text="Pin the card" Foreground="#FFB9B9B9"/>
