@@ -130,7 +130,6 @@
                     <ItemsControl ItemsSource="{Binding MyControlItems}">
                     </ItemsControl>
                 </ScrollViewer>
-
             </Grid>
             <Grid VerticalAlignment="Bottom" Height="50">
                 <StackPanel Orientation="Horizontal">
@@ -190,19 +189,19 @@
                            AllowsTransparency="true">
                         <StackPanel Orientation="Horizontal" Background="DarkGray">
                             <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding TimerMinutes}" 
-                 VerticalAlignment="Top" Width="30" Height="20"
-                 BorderThickness="0,0,0,1" Foreground="Gray"/>
+                                     VerticalAlignment="Top" Width="30" Height="20"
+                                     BorderThickness="0,0,0,1" Foreground="Gray" />
                             <Button Command="{Binding StartTimer}" HorizontalAlignment="Left" VerticalAlignment="Top"
-                        BorderThickness="0" Height="20" Background="Transparent" >
+                                    BorderThickness="0" Height="20" Background="Transparent" >
                                 <Grid>
                                     <Path  
-                            Data="M208.511,102.62c-6.6-6.623-16.58-8.608-25.222-5.022c-8.674,3.589-14.303,12.03-14.303,21.398v251.797
-		c0,9.368,5.629,17.809,14.303,21.397c2.853,1.187,5.864,1.762,8.849,1.762c6.025,0,11.958-2.353,16.373-6.784l125.906-125.9
-		c9.041-9.04,9.041-23.708,0-32.748L208.511,102.62z" Fill="#FF22A798" Width="30" Height="10" Stretch="Uniform"/>
+                                    Data="M208.511,102.62c-6.6-6.623-16.58-8.608-25.222-5.022c-8.674,3.589-14.303,12.03-14.303,21.398v251.797
+		                            c0,9.368,5.629,17.809,14.303,21.397c2.853,1.187,5.864,1.762,8.849,1.762c6.025,0,11.958-2.353,16.373-6.784l125.906-125.9
+		                            c9.041-9.04,9.041-23.708,0-32.748L208.511,102.62z" Fill="#FF22A798" Width="30" Height="10" Stretch="Uniform"/>
                                     <Path  
-                            Data="M244.895,0C109.644,0,0,109.645,0,244.894c0,135.251,109.644,244.895,244.895,244.895
-		s244.894-109.644,244.894-244.895C489.788,109.645,380.146,0,244.895,0z M244.895,440.81c-108.034,0-195.915-87.89-195.915-195.916
-		S136.861,48.979,244.895,48.979S440.81,136.868,440.81,244.894S352.929,440.81,244.895,440.81z" Fill="#FF22A798" Width="15" Height="20" Stretch="Uniform"/>
+                                    Data="M244.895,0C109.644,0,0,109.645,0,244.894c0,135.251,109.644,244.895,244.895,244.895
+		                            s244.894-109.644,244.894-244.895C489.788,109.645,380.146,0,244.895,0z M244.895,440.81c-108.034,0-195.915-87.89-195.915-195.916
+		                            S136.861,48.979,244.895,48.979S440.81,136.868,440.81,244.894S352.929,440.81,244.895,440.81z" Fill="#FF22A798" Width="15" Height="20" Stretch="Uniform"/>
                                 </Grid>
                             </Button>
                         </StackPanel>
