@@ -241,11 +241,14 @@
                       StaysOpen="False" Placement="Top" >
                     <Grid Background="Gray" Width="100" Height="100">
                         <StackPanel>
-                            <Button Command="{Binding AboutAuthor}" Content="About author" Style="{DynamicResource CloseCardButtonStyle}"
+                            <Button Command="{Binding AboutAuthor}" Content="Автор" Style="{DynamicResource CloseCardButtonStyle}"
                                     BorderThickness="0" Background="#FFE2DEDE" Foreground="#FF4E4E4E" Margin="1"/>
-                            <Button Content="Check updates" Style="{DynamicResource CloseCardButtonStyle}"
+                            <Button Content="Обновления" Style="{DynamicResource CloseCardButtonStyle}"
                                     BorderThickness="0" Background="#FFE2DEDE" Foreground="#FF4E4E4E" Margin="1"
                                     Command="{Binding CheckAppUpdates}" IsEnabled="false"/>
+                            <Button Content="Сообщить о баге" Style="{DynamicResource CloseCardButtonStyle}"
+                                    BorderThickness="0" Background="#FFE2DEDE" Foreground="#FF4E4E4E" Margin="1"
+                                    Command="{Binding SendBugReport}" />
                         </StackPanel>
                     </Grid>
                 </Popup>

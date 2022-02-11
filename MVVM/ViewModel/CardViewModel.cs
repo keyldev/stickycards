@@ -106,6 +106,7 @@ namespace helloworld.MVVM.ViewModel
         public RelayCommand CheckAppUpdates { get; set; }
         public RelayCommand ShowTimerSettings { get; private set; }
         public RelayCommand StartTimer { get; set; }
+        public RelayCommand SendBugReport { get; set; }
 
         #endregion
 
@@ -118,7 +119,9 @@ namespace helloworld.MVVM.ViewModel
                 MyControlItems = new ObservableCollection<object>(); // коллекция объектов типа object (если кто увидит - пипяу) #change
                 ShowOptionsDialog = new RelayCommand(o => IsOptionOpen = (IsOptionOpen) ? false : true);
                 initializeColors();
-
+                SendBugReport = new RelayCommand(o => {
+                    MessageBox.Show("Если Вы столкнулись с проблемой,\nпожалуйста, опишите её в личных сообщениях: (vk.com/cybertent)\n","Нашли проблему?");
+                });
                 PinCard = new RelayCommand((o) =>
                 {
                     if (isTopmost)
