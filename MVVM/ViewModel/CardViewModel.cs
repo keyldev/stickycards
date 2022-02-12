@@ -83,7 +83,8 @@ namespace helloworld.MVVM.ViewModel
             "#ffc2c1",
             "#66A3A3",
             "#00bfff",
-            "#22ccaa"
+            "#22ccaa",
+            "#33aaCC"
         };
         private ObservableCollection<object> _colorsList;
         public ObservableCollection<object> ColorsList
