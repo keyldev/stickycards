@@ -187,7 +187,7 @@
                     <Popup x:Name="TimerPopup" IsOpen="{Binding OpenTimerSettings}"
                            StaysOpen="False" Placement="Bottom" PlacementTarget="{Binding ElementName=SetTimer}"
                            AllowsTransparency="true">
-                        <StackPanel Orientation="Horizontal" Background="DarkGray">
+                        <StackPanel Orientation="Horizontal" Background="DarkGray" Width="60">
                             <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding TimerMinutes}" 
                                      VerticalAlignment="Top" Width="30" Height="20"
                                      BorderThickness="0,0,0,1" Foreground="Gray" />

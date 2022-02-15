@@ -25,6 +25,7 @@ namespace helloworld.MVVM.ViewModel
         }
 
         #region TECHPROPS
+
         // card status (over all windows)
         private bool _isTopmost = false;
         public bool isTopmost
@@ -64,7 +65,6 @@ namespace helloworld.MVVM.ViewModel
         }
 
         private string _timerMinutes = "5";
-
         public string TimerMinutes
         {
             get { return _timerMinutes; }
@@ -74,6 +74,7 @@ namespace helloworld.MVVM.ViewModel
         #endregion
 
         #region COLORS
+
         string[] colors = {
             "#ff25cc",
             "#2211AA",
@@ -92,6 +93,7 @@ namespace helloworld.MVVM.ViewModel
             get { return _colorsList; }
             set { _colorsList = value; NotifyPropertyChanged(); }
         }
+
         #endregion
 
         #region ButtonCMDS
