@@ -223,8 +223,8 @@
             </Grid>
             <Separator VerticalAlignment="Bottom" Margin="0,0,0,50"/>
         </Grid>
-        <Border x:Name="bCardHeader" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="5" Background="{Binding BackgroundColor}"
-                MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
+        <Border x:Name="bCardHeader" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="20" Background="{Binding BackgroundColor}"
+                >
             <Grid>
                 <Button Style="{DynamicResource CloseCardButtonStyle}" x:Name="CloseCardButton" HorizontalAlignment="Right" VerticalAlignment="Stretch" Height="Auto" Width="20"
                         BorderThickness="0" Background="Transparent" Content="x" Foreground="Gray" FontSize="14"
