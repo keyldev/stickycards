@@ -114,7 +114,6 @@ namespace helloworld.MVVM.ViewModel
         #endregion
 
         // вынести функционал из конструктора
-        // добавить методы инициализации команд и т.п.
         public CardViewModel()
         {
             try
