@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Input;
 
 namespace helloworld.MVVM.View
 {
@@ -24,6 +23,8 @@ namespace helloworld.MVVM.View
         private void CloseCardButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+
         }
+
     }
 }

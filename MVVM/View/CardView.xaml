@@ -6,7 +6,8 @@
         xmlns:viewModel="clr-namespace:helloworld.MVVM.ViewModel"
         xmlns:local="clr-namespace:helloworld.MVVM.View"
         mc:Ignorable="d" WindowStyle="None" ResizeMode="CanResizeWithGrip" 
-        Title="{Binding NoteHeader}" MinHeight="290" MinWidth="350" Height="290" Width="350" Background="Transparent" AllowsTransparency="True"
+        Title="{Binding NoteHeader}" MinHeight="290" MinWidth="350" Height="290" Width="350" 
+        Background="Transparent" AllowsTransparency="True"
         Topmost="{Binding isTopmost}" Icon="/Assets/icon.ico">
     <Window.DataContext>
         <viewModel:CardViewModel/>
