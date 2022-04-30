@@ -263,7 +263,8 @@ namespace helloworld.MVVM.ViewModel
         //#update
         private void Timer_Tick(object sender, EventArgs e)
         {
-            MessageBox.Show("Время таймера закончилось.", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Information);
+            NotificationWindow window = new NotificationWindow();
+            window.Show();
             timer.Stop();
         }
 
